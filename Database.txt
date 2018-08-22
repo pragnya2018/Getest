@@ -1,0 +1,3 @@
+select A.name,A.model_id,q.rev_id,A.created_at from (
+select p.name,p.model_id,max(q.created_at) As created_at from model p left join revision q on p.model_id=q.model_id 
+group by p.name,p.model_id) A left join revision q on A.created_at= q.created_at;
